@@ -1,2 +1,6 @@
-# AGH_2_PI
-Programowanie Imperatywne - II semestr
+# Programowanie Imperatywne  - semestr 2. (2018/2019)
+
+Informatyka - WIEiT - AGH
+
+---
+Copyright © 2019 Jacek Nitychoruk
