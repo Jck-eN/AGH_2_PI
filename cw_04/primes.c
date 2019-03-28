@@ -23,7 +23,6 @@ bool non_decreasing(int n){
 
 int main()
 {
-    struct timeval start, end;
     int n;
     scanf("%d", &n);
     
