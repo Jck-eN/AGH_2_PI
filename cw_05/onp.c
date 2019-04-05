@@ -100,26 +100,24 @@ int read_and_calculate(int operands_count, int max_entry_size) {
     while(numbers<operands_count || operands->top>0) {
         for(int i=0; i<max_entry_size; i++) entry[i] = '\0';
         scanf("%s", entry);
-        if(parse(entry)==number) {
-            push(operands, to_int(entry));
-            numbers++;
-        }
-        else{
-            switch (parse(entry))
-            {
-                case add:
-                    do_add(operands);
-                    break;
-                case subtract:
-                    do_subtract(operands);
-                    break;
-                case multiply:
-                    do_multiply(operands);
-                    break;
-                case divide:
-                    do_divide(operands);
-                    break;
-            }
+        switch (parse(entry))
+        {
+            case add:
+                do_add(operands);
+                break;
+            case subtract:
+                do_subtract(operands);
+                break;
+            case multiply:
+                do_multiply(operands);
+                break;
+            case divide:
+                do_divide(operands);
+                break;
+            case number:
+                push(operands, to_int(entry));
+                numbers++;
+                break;
         }
     }
     int result = pop(operands);
