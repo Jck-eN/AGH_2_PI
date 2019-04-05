@@ -8,6 +8,21 @@ typedef struct stack {
     int max_size;
 } stack;
 
+int to_int(char* string){
+    int sign=1;
+    int offset=0;
+    if(string[0]=='-'){
+        sign=-1;
+        offset=1;
+    }
+    int res=0;
+    for(int i=0; string[i+offset]!='\0'; i++){
+        res=10*res+string[i+offset]-'0';
+    }
+    res*=sign;
+    return res;
+}
+
 void push(stack* s, int n) {
     if(s->top+1<s->max_size){
         s->top++;
@@ -86,7 +101,7 @@ int read_and_calculate(int operands_count, int max_entry_size) {
         for(int i=0; i<max_entry_size; i++) entry[i] = '\0';
         scanf("%s", entry);
         if(parse(entry)==number) {
-            push(operands, atoi(entry));
+            push(operands, to_int(entry));
             numbers++;
         }
         else{
