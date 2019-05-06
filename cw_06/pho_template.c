@@ -5,7 +5,7 @@
 
 // Uncomment line with "#define DEBUG" if you want to see your hashtable.
 // But rememeber to send only solutions with debug turned off!
-//#define DEBUG 1 
+// #define DEBUG 1 
 
 #define MAX_CHARS 31
 
@@ -72,7 +72,7 @@ void free_memory(Slot** hashtable, int n) {
 void debug_print_hashtable(Slot** hashtable, int n) {
 	#ifdef DEBUG
 		for (int i = 0; i < n; i++) {
-			printf("%d: [%d] %s\n", hashtable[i]->state, hashtable[i]->name);
+			printf("%d: [%d] %s\n", i, hashtable[i]->state, hashtable[i]->name);
 		}
 		printf("\n");
 	#endif

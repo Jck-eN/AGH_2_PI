@@ -16,28 +16,46 @@ typedef struct Node {
 } Node;
 
 uint hashfunc(const char* txt) {
-	/*********************
-    * put your code here *
-	*********************/
+	int p = 2137;
+	uint h = 0;
+	for (int i = 0; i < strlen(txt); i++)
+		h = h*p + txt[i];
+	return h;
 }
 
 void add_to_hashtable(Node** hashtable, int n, const char* txt) {
-	/*********************
-    * put your code here *
-	*********************/
-	// use strcpy() for copying strings
+	Node *node = (Node*)malloc(sizeof(Node));
+	strcpy(node->text, txt);
+	uint hash = hashfunc(txt) % n;
+	node->next = hashtable[hash];
+	hashtable[hash] = node;
 }
 
 bool check_if_exists(Node** hashtable, int n, const char* txt) {
-	/*********************
-    * put your code here *
-	*********************/
+	if (n == 0) return false; 
+	uint hash = hashfunc(txt) % n;
+	Node* ptr;	
+	ptr = hashtable[hash];
+	while (ptr != NULL) {
+		if (strcmp(ptr->text, txt) == 0) {
+			return true;
+		}
+		ptr = ptr->next;
+	}
+	return false;
 }
 
 void free_memory(Node** hashtable, int n) {
-	/*********************
-    * put your code here *
-	*********************/
+	Node *ptr, *nxt;	
+	for (int i = 0; i < n; i++) {
+		ptr = hashtable[i];
+		while (ptr != NULL) {
+			nxt = ptr->next;
+			free(ptr);
+			ptr = nxt;
+		}
+	}
+	free(hashtable);
 }
 
 void debug_print_hashtable(Node** hashtable, int n) {
