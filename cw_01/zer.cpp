@@ -4,9 +4,15 @@ int n;
 
 int* my_first_sort(int tab[]) {
     
-    /***********************
-    *  put your code here  * 
-    ***********************/
+    for(int i=0; i<n-1; i++){
+        for(int j=i; j<n-1; j++){
+            if(tab[j]>tab[j+1]){
+                int tmp=tab[j];
+                tab[j]=tab[j+1];
+                tab[j+1]=tab[j];
+            }
+        }
+    }
     
     return tab;    
 }
