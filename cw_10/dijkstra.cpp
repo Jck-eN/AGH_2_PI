@@ -43,11 +43,17 @@ void dijkstra(Node **nodes, int n, Node *start) {
     priority_queue <Node *, vector<Node *>, decltype(cmp)> queue(cmp);
     start->dist=0;
     queue.push(start);
-    for(int i=0;i<n;i++){
+    bool calculated[n];
+    for(bool &i : calculated){
+        i = false;
+    }
+    while(!queue.empty()){
         Node* v = queue.top();
         queue.pop();
-
-        for(auto adj=v->neighbours.begin(); adj!=v->neighbours.end(); adj++){
+        if(calculated[v->val]) continue;
+        calculated[v->val] = true;
+        
+        for(auto adj=v->neighbours.begin(); adj!=v->neighbours.end(); ++adj){
             if(relax(v, adj->first, adj->second) )
             {
                 queue.push(adj->first);
@@ -73,4 +79,6 @@ int main() {
     cout << nodes[end]->dist << endl;
 
     for (int i=0; i<N; i++) delete nodes[i];
+    cin.get();
+    cin.get();
 }
